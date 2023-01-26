@@ -6,13 +6,23 @@ RUN yarn install --frozen-lockfile
 
 FROM node:18-alpine3.15 AS builder
 WORKDIR /app
+RUN npm install prisma -g 
 COPY --from=deps /app/node_modules ./node_modules
+RUN prisma db push
 COPY . .
+
+
 RUN yarn build
 
+
 FROM node:18-alpine3.15 AS runner
+
 WORKDIR /usr/src/app
+
 COPY package.json yarn.lock ./
+
 RUN yarn install --prod
-RUN npm install prisma -g 
+
 COPY --from=builder /app/dist ./dist
+
+CMD [ "node","dist/main" ]
