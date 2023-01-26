@@ -72,4 +72,4 @@ PORT=
 ## Como ver la documentacion de la aplicacion
 
 - local - [localhost](http://localhost:3001/docs)
-- miweb - [https://nestjs.com](https://nestjs.com/)
+- miweb - [corriendo en mi servidor](http://190.85.54.78:2342/docs)
