@@ -8,10 +8,10 @@ FROM node:18-alpine3.15 AS builder
 WORKDIR /app
 RUN npm install prisma -g 
 COPY --from=deps /app/node_modules ./node_modules
-RUN prisma db push
 COPY . .
 
 
+RUN prisma db push
 RUN yarn build
 
 
